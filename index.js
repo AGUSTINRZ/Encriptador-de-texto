@@ -43,19 +43,46 @@ function checkText(textareaValue) {
     return newText;
 }
 
-//Código de encriptación
 function encryptText(textareaValue) {
+    // Se declara una variable que almacenará el valor que retorne la función checkText
     let cleanText = checkText(textareaValue);
-    // Utilizamos el método replace() para buscar y reemplazar las letras "a", "e", "i", "o", y "u" con las cadenas especificadas en el código
-    let newText = cleanText.replace(/a/g, "ai")
-                        .replace(/e/g, "enter")
-                        .replace(/i/g, "imes")
-                        .replace(/o/g, "ober")
-                        .replace(/u/g, "ufat");
-    // Asignamos el texto encriptado en el elemento encryptedTextarea
-    textareaValue = newText;
-    showTextEncrypted(textareaValue);
+    // Inicializamos una variable para almacenar el texto encriptado
+    let newText = "";
+
+    // Recorremos cada caracter del texto limpio
+    for (let i = 0; i < cleanText.length; i++) {
+        let letter = cleanText[i];
+        // Comparamos el caracter actual con las letras "a", "e", "i", "o" y "u"
+        switch(letter) {
+            // Si el caracter es "a", lo reemplazamos con "ai"
+            case 'a':
+                newText += "ai";
+                break;
+            // Si el caracter es "e", lo reemplazamos con "enter"
+            case 'e':
+                newText += "enter";
+                break;
+            // Si el caracter es "i", lo reemplazamos con "imes"
+            case 'i':
+                newText += "imes";
+                break;
+            // Si el caracter es "o", lo reemplazamos con "ober"
+            case 'o':
+                newText += "ober";
+                break;
+            // Si el caracter es "u", lo reemplazamos con "ufat"
+            case 'u':
+                newText += "ufat";
+                break;
+            // Si el caracter no es ninguna de las letras especificadas, lo agregamos tal y como está al texto encriptado
+            default:
+                newText += letter;
+        }
+    }
+    // Mostramos el texto encriptado
+    showTextEncrypted(newText);
 }
+
 
 //Código de desencriptación
 function decryptText(textareaValue) {
